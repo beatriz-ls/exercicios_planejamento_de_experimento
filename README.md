@@ -1,1 +1,1 @@
-"# Exerc°cios de Planejamento de Experimento" 
+Exercicios pr√°ticos de planejamento de experimento
