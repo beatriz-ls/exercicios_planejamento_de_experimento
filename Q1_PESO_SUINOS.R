@@ -34,7 +34,7 @@ Vitamina_B12 = rep(c("B0", "B1"), times = 6)
 Antibiótico;Vitamina_B12
 
 # Resumo dos dados
-summary(dados)
+#summary(dados)
 
 # Análise de variância (ANOVA)
 modelo <- aov(Peso ~ Antibiótico * Vitamina_B12)
@@ -58,3 +58,4 @@ ggplot(dados, aes(x = interaction(Antibiótico, Vitamina_B12), y = Peso, fill = 
   labs(x = "Tratamentos (Antibiótico x Vitamina B12)", y = "Aumento de Peso (Kg)",
        title = "Efeito do Antibiótico e Vitamina B12 no Aumento de Peso de Suínos") +
   theme_minimal()
+
