@@ -22,17 +22,29 @@ anova(modelo)
 
 # Criar superfície de resposta
 grid <- expand.grid(
-  X1 = seq(80, 90, length.out = 30),
-  X2 = seq(170, 180, length.out = 30)
+  X1 = seq(min(dados$X1), max(dados$X1), length.out = 50),
+  X2 = seq(min(dados$X2), max(dados$X2), length.out = 50)
 )
 grid$Y_pred <- predict(modelo, newdata = grid)
+# Converter para matriz para o plotly
+X1_mat <- matrix(grid$X1, nrow = 30, ncol = 30)
+X2_mat <- matrix(grid$X2, nrow = 30, ncol = 30)
+Y_mat  <- matrix(grid$Y_pred, nrow = 30, ncol = 30)
 
-# Plotar a superfície de resposta
-ggplot(grid, aes(x = X1, y = X2, fill = Y_pred)) +
-  geom_tile() +
-  scale_fill_gradient(low = "blue", high = "red") +
-  labs(title = "Superfície de Resposta",
-       x = "Tempo (X1)",
-       y = "Temperatura (X2)",
-       fill = "Resposta Y") +
-  theme_minimal()
+# Criar gráfico 3D
+fig <- plot_ly(
+  x = X1_mat[,1], 
+  y = X2_mat[1,], 
+  z = Y_mat, 
+  type = "surface"
+)
+
+# obs: Dúvida de como criar esse gráfico de superficie
+
+# Adicionar pontos dos dados originais
+fig <- fig %>%
+  add_markers(x = dados$X1, y = dados$X2, z = dados$Y, 
+              marker = list(color = 'black', size = 5))
+
+# Exibir gráfico
+fig
