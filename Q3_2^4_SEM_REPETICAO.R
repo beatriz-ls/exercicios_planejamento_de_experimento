@@ -62,3 +62,6 @@ qqline(resid(modelo), col = "red")
 tukey_resultado <- TukeyHSD(modelo)
 
 # obs: temperatura, catalisado, e concentração modificam o rendimento
+
+# Plotando os resultados do teste de Tukey
+plot(tukey_resultado)
