@@ -26,6 +26,7 @@ grid <- expand.grid(
   X2 = seq(min(dados$X2), max(dados$X2), length.out = 50)
 )
 grid$Y_pred <- predict(modelo, newdata = grid)
+
 # Converter para matriz para o plotly
 X1_mat <- matrix(grid$X1, nrow = 30, ncol = 30)
 X2_mat <- matrix(grid$X2, nrow = 30, ncol = 30)
